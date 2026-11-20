@@ -1,20 +1,15 @@
-# RQX Patente B
+# RQX Patente B · Cinematic V15
+Android Studio project with the original V15 quiz and RealCity driving game. **APK build pending CI verification.**
 
-RQX Cinematic V15 is the **stable** quiz + 3D driving simulator baseline.
+## Build
+Open [Actions](https://github.com/sruhul800-tech/RQX-Patente-B1/actions) and select **Build RQX Android APK**, then Run workflow. The workflow should produce a debug APK artifact.
 
-## Android app status
+Android Studio: open `android/`, use Java 17 and Android SDK 35, then run `gradle assembleDebug`.
 
-- Official user-provided gold/silver RQX logo is bundled into the Android source project as launch icon and splash screen.
-- Android Studio wrapper uses local WebView assets and optional native Italian text-to-speech.
-- **No APK has been built or installed yet.** Android-device tests are pending.
-- The full project bundle is held as a downloadable ZIP in the ChatGPT conversation, **not yet uploaded to this repository**.
-- The workflow at `.github/workflows/android-apk.yml` needs the `android/` project uploaded before it can produce an APK.
-- This repository is currently **public**. Do not commit secret API keys, passwords, signing keys or private information.
+## Files
+- `android/app/src/main/assets/index.html` — full V15 quiz app.
+- `android/app/src/main/assets/simulator.html` — standalone V15 3D game.
+- `index.html` — web preview.
+- `simulator.html` — web standalone game.
 
-## Next step
-
-Upload the extracted source files from `RQX_Patente_B_V15_Official_Android_App_Source.zip` to the repository root, preserving `android/` and `.github/`. Then run **Actions → Build RQX Android APK → Run workflow**. An artifact with the debug APK should appear if the build succeeds.
-
-## Product scope
-
-Educational practice for Italian Patente B. Original V15 graphics are stylized 3D; not photorealistic. The quiz dataset reflects a 2023 collection and current official rules should be checked.
+The original 2023 quiz dataset is included inside the HTML. This repository is currently **public**. Keep API keys, signing keys and personal data out of commits. This is an educational simulator and is not an official Italian exam app.
