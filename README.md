@@ -1,15 +1,23 @@
-# RQX Patente B · Cinematic V15
-Android Studio project with the original V15 quiz and RealCity driving game. **APK build pending CI verification.**
+# RQX Patente B — Cinematic V15 + AI Coach
 
-## Build
-Open [Actions](https://github.com/sruhul800-tech/RQX-Patente-B1/actions) and select **Build RQX Android APK**, then Run workflow. The workflow should produce a debug APK artifact.
+Preserves V15 quiz + 3D game and adds the bilingual RQX AI Driving Instructor.
 
-Android Studio: open `android/`, use Java 17 and Android SDK 35, then run `gradle assembleDebug`.
+## Contents
+- `web/index.html` — web app with RQX AI Tutor overlay and original V15 quiz.
+- `web/simulator.html` — V15 3D game with a driving-scene AI Coach overlay.
+- `android/` — branded Android Studio WebView wrapper and bundled V15+AI HTML. Version `15.1.0-AI` / code `16`.
+- `worker/src/index.js` — Cloudflare Worker securing OpenAI API calls behind a separate owner access code.
+- `worker/test/worker.test.mjs` — automated backend tests; run `node --test worker/test/*.test.mjs`.
+- `docs/SETUP_BN.md` — Bangla installation and AI activation instructions.
 
-## Files
-- `android/app/src/main/assets/index.html` — full V15 quiz app.
-- `android/app/src/main/assets/simulator.html` — standalone V15 3D game.
-- `index.html` — web preview.
-- `simulator.html` — web standalone game.
+## Status
 
-The original 2023 quiz dataset is included inside the HTML. This repository is currently **public**. Keep API keys, signing keys and personal data out of commits. This is an educational simulator and is not an official Italian exam app.
+**AI panels and API integration code are implemented. Live AI is not switched on** until the owner deploys the worker and sets both `OPENAI_API_KEY` and `RQX_ACCESS_CODE` as secrets. They must never be put in the HTML, APK, or public GitHub.
+
+Server response includes `it`, `bn`, and `tip`; model outputs can be wrong and should be checked against official rules. The original 2023 quiz collection is retained. This project is educational, not an official driving exam app.
+
+An access code protects a small private pilot; for a public release, use user authentication, quotas and per-account billing protection. Cloudflare KV optional best-effort IP throttling is available.
+
+## Android build
+
+Open `android/` with Android Studio; build using JDK 17, Android SDK 35 and Gradle 8.9. Existing GitHub Actions workflow can build `app-debug.apk`; this package itself does not contain a newly compiled APK.
