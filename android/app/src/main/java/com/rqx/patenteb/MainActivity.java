@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
         web = new WebView(this);
         holder.addView(web, new FrameLayout.LayoutParams(-1,-1));
         splash = new ImageView(this);
-        splash.setImageResource(com.rqx.patenteb.R.drawable.rqx_splash);
+        splash.setImageResource(com.rqx.patenteb.R.drawable.rqx_icon);
         splash.setScaleType(ImageView.ScaleType.FIT_CENTER);
         splash.setBackgroundColor(Color.rgb(8,18,31));
         holder.addView(splash, new FrameLayout.LayoutParams(-1,-1));

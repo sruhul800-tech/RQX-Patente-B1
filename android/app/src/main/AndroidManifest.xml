@@ -11,8 +11,8 @@
         android:allowBackup="true"
         android:usesCleartextTraffic="false"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/rqx_icon"
+        android:roundIcon="@drawable/rqx_icon"
         android:theme="@style/RQXTheme">
         <activity
             android:name=".MainActivity"
