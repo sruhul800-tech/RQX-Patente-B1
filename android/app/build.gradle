@@ -1,9 +1,31 @@
 plugins { id 'com.android.application' }
+
 android {
- namespace 'com.rqx.patenteb'
- compileSdk 35
- defaultConfig { applicationId 'com.rqx.patenteb'; minSdk 26; targetSdk 35; versionCode 16; versionName '15.1.0-AI' }
- buildTypes { release { minifyEnabled false } }
- compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    namespace 'com.rqx.patenteb'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.rqx.patenteb'
+        minSdk 26
+        targetSdk 35
+        versionCode 17
+        versionName '15.2.0-VOICE-FIX'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    packaging {
+        resources { excludes += ['META-INF/DEPENDENCIES','META-INF/NOTICE','META-INF/LICENSE'] }
+    }
 }
-dependencies { implementation 'androidx.webkit:webkit:1.12.1' }
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.12.1'
+}

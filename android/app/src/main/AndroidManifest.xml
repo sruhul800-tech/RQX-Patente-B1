@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<uses-permission android:name="android.permission.INTERNET"/>
-<application android:label="RQX Patente B" android:allowBackup="true" android:usesCleartextTraffic="false" android:hardwareAccelerated="true" android:icon="@drawable/rqx_icon" android:theme="@style/RQXTheme">
-<activity android:name=".MainActivity" android:exported="true" android:windowSoftInputMode="adjustResize" android:configChanges="orientation|screenSize|keyboardHidden">
-<intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
-</activity>
-</application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <!-- Android 11+ package visibility for installed speech synthesis engines -->
+    <queries>
+      <intent><action android:name="android.intent.action.TTS_SERVICE" /></intent>
+    </queries>
+    <application
+        android:label="RQX Patente B"
+        android:allowBackup="true"
+        android:usesCleartextTraffic="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/RQXTheme">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="unspecified"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>
