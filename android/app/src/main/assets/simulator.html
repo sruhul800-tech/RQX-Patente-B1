@@ -255,6 +255,14 @@ body.rqx-cockpit .rqxWheelOverlay{filter:drop-shadow(0 8px 12px #000a)}
 }
 @media(max-width:390px){.brand small{display:none!important}.navDirection strong{font-size:8px!important}#rqxGameTools{top:160px!important}#rqxMissionDock{top:194px!important;width:120px!important}#rqxMiniMapSwitch{bottom:206px!important}.steerSliderBox,.steerSetting{width:131px!important}}
 
+
+/* RQX MOBILE NAV SAFE-AREA FIX v15.2.1 */
+@media (max-width: 900px) and (orientation: portrait) {
+  .touchPanel { bottom: calc(48px + env(safe-area-inset-bottom, 0px)) !important; }
+}
+@media (max-width: 900px) and (orientation: landscape) {
+  .touchPanel { bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important; }
+}
 </style><script id="rqx-android-tts">(function(){
 'use strict';
 var nativeApi=window.RQXNative || (window.parent!==window ? window.parent.RQXNative : null);
