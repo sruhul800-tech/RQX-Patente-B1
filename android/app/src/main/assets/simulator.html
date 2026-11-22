@@ -283,6 +283,7 @@ body.rqx-cockpit .rqxWheelOverlay{filter:drop-shadow(0 8px 12px #000a)}
 @media(max-width:900px){.rqxLevelCards{grid-template-columns:repeat(2,minmax(0,1fr))}.rqxLevelPicker{padding:11px}.rqxLevelCard{min-height:76px;padding:9px}.rqxLevelTop{align-items:start}.rqxLevelTop b{font-size:10px}.rqxLevelTop button{font-size:9px}.mapBox{bottom:210px!important}#map{width:155px;height:155px}#rqxLevelBadge{top:238px;left:8px;font-size:9px;padding:7px 8px}.mapPanel{width:96vw!important;padding:16px!important}.mapPanel canvas{height:min(58dvh,650px);min-height:260px}.rqxArchivePanel{max-width:96vw}}
 @media(max-width:430px){.mapBox{bottom:220px!important}#map{width:144px;height:144px}#rqxLevelBadge{top:209px;max-width:170px;font-size:8px}#rqxGameTools{top:171px}}
 @media(max-width:900px) and (orientation:landscape){.mapBox{bottom:130px!important}#rqxLevelBadge{top:148px}}
+.rqxLevelCards{max-height:33dvh;overflow-y:auto;overscroll-behavior:contain;scrollbar-color:#e5c58d #132734}
 </style><script id="rqx-android-tts">(function(){
 'use strict';
 var nativeApi=window.RQXNative || (window.parent!==window ? window.parent.RQXNative : null);
@@ -348,7 +349,7 @@ window.addEventListener('DOMContentLoaded',function(){
 <div class="steerSetting"><label for="sensitivity">SENSIBILITÀ <span id="sensitivityValue">1.05×</span></label><input id="sensitivity" type="range" min="0.65" max="1.70" step="0.05" value="1.05" aria-label="Sensibilità volante"></div>
 <div class="steerModeRow"><button type="button" id="steerMode">VOLANTE ↺</button><button id="autoCenter" type="button" aria-pressed="true">⟲ AUTO ✓</button></div><div class="steerAlternatives"><button type="button" data-steer-hold="left" aria-label="Sterza a sinistra">◀</button><button type="button" data-steer-hold="right" aria-label="Sterza a destra">▶</button></div></div><div class="touchGroup pedals"><button type="button" id="gearTouch" class="touch gearTouch" aria-label="Cambia marcia">D</button><button type="button" class="touch brake" data-hold="brake">FRENO</button><button type="button" class="touch gas" data-hold="gas">GAS</button></div></div>
 <div class="overlay hidden" id="mapOverlay"><section class="panel mapPanel"><div class="eyebrow">RQX · ATLAS INTERATTIVO</div><h1>Esplora i distretti.</h1><p>Ogni livello conduce in una nuova zona della città. Apri l’archivio per studiare tutti i 25 argomenti.</p><p id="mapCoords">Coordinate</p><canvas id="fullMap" width="900" height="950"></canvas><div id="rqxMapLegend">🟨 Livello attivo &nbsp; 🟦 Nuovi distretti &nbsp; ✦ Tappe GPS</div><button type="button" id="rqxTheoryMap">📚 ARCHIVIO 7.139 QUIZ</button><button type="button" id="closeMap" class="primary">TORNA ALLA GUIDA →</button></section></div>
-<div class="overlay" id="intro"><section class="panel"><div class="premiumMenuTag"><span class="liveDot"></span> WORLD ACADEMY · LEVEL EDITION <span>· V15.3</span></div>
+<div class="overlay" id="intro"><section class="panel"><div class="premiumMenuTag"><span class="liveDot"></span> WORLD ACADEMY · ROADS <span>· V15.4</span></div>
 <section class="rqxSessionPicker" aria-label="Modalità di guida">
 <h2>✦ RQX APEX · SCEGLI LA TUA SESSIONE</h2>
 <div class="rqxPickerGrid"><label>ESPERIENZA<select id="rqxMode"><option value="lesson">🧠 Lezione GPS + Quiz</option><option value="exam">🏁 Esame simulato</option><option value="free">🚘 Guida libera</option></select></label>
@@ -358,9 +359,9 @@ window.addEventListener('DOMContentLoaded',function(){
 <label class="rqxToggleLine"><input id="rqxInstructor" type="checkbox" checked> 🔊 Istruttore: guida vocale in italiano + suggerimenti in বাংলা</label>
 <p>Lezione = GPS + quiz contestuali. Esame = percorso cronometrato con report didattico. Punteggi e traffico simulati, non valutazioni ufficiali.</p></section>
 
-<div id="rqxLevelPicker" class="rqxLevelPicker"><div class="rqxLevelTop"><div><b>✦ RQX WORLD ACADEMY</b><small>6 DISTRETTI · 7.139 DOMANDE · PROGRESSO SALVATO</small></div><button id="rqxTheoryIntro" type="button">📚 ARCHIVIO QUIZ</button></div><div id="rqxLevelCards" class="rqxLevelCards"></div><p id="rqxLevelHint">Completa le tappe e rispondi alle domande per sbloccare il livello successivo.</p></div>
+<div id="rqxLevelPicker" class="rqxLevelPicker"><div class="rqxLevelTop"><div><b>✦ RQX WORLD ACADEMY</b><small>30 LIVELLI · 7.139 DOMANDE · 25 ARGOMENTI</small></div><button id="rqxTheoryIntro" type="button">📚 ARCHIVIO QUIZ</button></div><div id="rqxLevelCards" class="rqxLevelCards"></div><p id="rqxLevelHint">Completa le tappe e rispondi alle domande per sbloccare il livello successivo.</p></div>
 <div class="introHeroLockup"><div class="bigLogo">RQX</div><div><div class="eyebrow">PATENTE B · DRIVEWORLD</div><div class="introHeroSmall">WORLD <span>ACADEMY 3D</span></div></div></div>
-<div class="introDivider"></div><h1>Guida meglio. <em>Dentro la città.</em></h1><p id="introDesc">Guida in una città in 3D, attraversa incroci simulati, entra in rotatoria, scegli l'uscita e rispetta semafori, limiti e pedoni. Rispondi alle domande Patente B in italiano.</p><div class="heroStats"><div><strong>6</strong><small>LIVELLI</small></div><div><strong>7.139</strong><small>DOMANDE</small></div><div><strong>AI</strong><small>ANTI-COLLISIONE</small></div></div><div class="featureRow"><span>↻ Rotatoria con uscite</span><span>↱ Strade a destra e sinistra</span><span>🚶 Pedoni in movimento</span><span>🚦 Semafori coordinati auto/pedoni</span><span>◉ Sterzo Slider + Volante</span><span>🚗 Auto AI senza compenetrazione</span><span>⚙ Sensibilità regolabile</span><span>R / D marce avanti e indietro</span><span>Velocità costante senza gas</span><span>Mappa 8 volte più grande</span><span>🛡 Limitatore assistito</span><span>🔊 Quiz con voce</span><span>🏬 Negozi, bar, farmacia e fermate autobus</span><span>🧠 Domande sui segnali al momento giusto</span><span>🇧🇩 Spiegazioni in বাংলা</span><span>🧭 GPS in città</span></div><button id="start" class="primary">INIZIA · GUIDA & IMPARA ✦</button><button id="jumpRoundabout" type="button" class="mutedButton" style="display:block;width:100%;margin-top:10px">↻ VAI SUBITO ALLA ROTATORIA</button><div class="footnote"><b>Scenario quiz → Vero/Falso → spiegazione italiana + বাংলা → riprendi la guida.</b> · Le spiegazioni sono offline e curate, non generazione AI live. <br><b>RQX LABS · SIMULATION BUILD 09</b> · Versione educativa 3D · Velocità costante senza rilascio gas è una scelta arcade (NON realistica) · Frenare per rallentare · Penalità simulate · Offline</div></section></div>
+<div class="introDivider"></div><h1>Guida meglio. <em>Dentro la città.</em></h1><p id="introDesc">Guida in una città in 3D, attraversa incroci simulati, entra in rotatoria, scegli l'uscita e rispetta semafori, limiti e pedoni. Rispondi alle domande Patente B in italiano.</p><div class="heroStats"><div><strong>30</strong><small>LIVELLI</small></div><div><strong>7.139</strong><small>DOMANDE</small></div><div><strong>AI</strong><small>ANTI-COLLISIONE</small></div></div><div class="featureRow"><span>↻ Rotatoria con uscite</span><span>↱ Strade a destra e sinistra</span><span>🚶 Pedoni in movimento</span><span>🚦 Semafori coordinati auto/pedoni</span><span>◉ Sterzo Slider + Volante</span><span>🚗 Auto AI senza compenetrazione</span><span>⚙ Sensibilità regolabile</span><span>R / D marce avanti e indietro</span><span>Velocità costante senza gas</span><span>Mappa 8 volte più grande</span><span>🛡 Limitatore assistito</span><span>🔊 Quiz con voce</span><span>🏬 Negozi, bar, farmacia e fermate autobus</span><span>🧠 Domande sui segnali al momento giusto</span><span>🇧🇩 Spiegazioni in বাংলা</span><span>🧭 GPS in città</span></div><button id="start" class="primary">INIZIA · GUIDA & IMPARA ✦</button><button id="jumpRoundabout" type="button" class="mutedButton" style="display:block;width:100%;margin-top:10px">↻ VAI SUBITO ALLA ROTATORIA</button><div class="footnote"><b>Scenario quiz → Vero/Falso → spiegazione italiana + বাংলা → riprendi la guida.</b> · Le spiegazioni sono offline e curate, non generazione AI live. <br><b>RQX LABS · SIMULATION BUILD 09</b> · Versione educativa 3D · Velocità costante senza rilascio gas è una scelta arcade (NON realistica) · Frenare per rallentare · Penalità simulate · Offline</div></section></div>
 <div class="overlay hidden" id="quiz"><section class="panel"><div class="quizHeader"><div><div class="eyebrow">RQX THEORY CHECKPOINT</div><div class="quizTag" id="quizTopic">SEGNALI STRADALI</div><div class="rqxScene" id="quizScene">Situazione di guida</div></div><button class="speech" id="speak">🔊 ASCOLTA</button></div><div class="rqxSceneSign"><canvas id="rqxQuizSign" width="160" height="160" aria-label="Segnale della situazione"></canvas><i id="rqxSceneIcon" hidden>🚦</i><div><b id="rqxSceneTitle">SITUAZIONE REALE</b><span>Guarda il segnale prima di rispondere.</span></div></div><div class="rqxContext" id="quizContext">Osserva la strada e rispondi.</div><img id="rqxArchiveFigure" alt="Figura segnaletica del quiz" style="display:none"/><div id="rqxFigureWarning" class="rqxFigureWarning" hidden>Per questa domanda serve la figura; se non compare, verifica la connessione o passa a un altro quiz.</div><div class="question" id="quizText">Domanda</div><div class="answerGrid"><button type="button" class="answer" data-value="true">✓ VERO</button><button type="button" class="answer" data-value="false">✕ FALSO</button></div><div class="quizFeedback" id="quizFeedback">Scegli la risposta corretta</div><div id="rqxCoach" class="rqxCoach" hidden><div class="rqxCoachLabel">✦ RQX BILINGUAL DRIVING COACH</div><div class="rqxCoachGrid"><div><span>🇮🇹 COSA DEVI FARE</span><p id="rqxCoachIT"></p><small id="rqxMistakeIT"></small></div><div><span>🇧🇩 বাংলায় সহজ ব্যাখ্যা</span><p id="rqxCoachBN"></p><small id="rqxMistakeBN"></small></div></div><div class="rqxCoachActions"><button id="coachVoiceIT" type="button">🔊 Ascolta la spiegazione</button><button id="coachVoiceBN" type="button">🔊 বাংলা শুনুন</button></div></div><button class="primary" id="nextQuiz" hidden>TORNA ALLA GUIDA →</button></section></div>
 
 <div class="overlay hidden" id="rqxLevelDone"><section class="panel rqxFinishPanel"><div class="eyebrow">✦ RQX WORLD ACADEMY</div><h1 id="rqxDoneTitle">LIVELLO COMPLETATO</h1><p id="rqxDoneDistrict"></p><div class="rqxFinishScore" id="rqxDoneScore">0 / 0 Quiz</div><p id="rqxDoneText"></p><button class="primary" id="rqxNextLevel">PROSSIMO LIVELLO →</button><button class="mutedButton" id="rqxRetryLevel">↻ RIPROVA</button><button class="mutedButton" id="rqxBackLevels">☰ SCEGLI LIVELLO</button></section></div>
@@ -401,6 +402,21 @@ const RQX_SCENE_TOPICS={
  school:['definizioni-generali-doveri-strada','vicinanza-pedonale'],
  roundabout:['segnali-obbligo','rotatoria'],general:['norme-di-circolazione','guida-veicolo']
 };
+
+/* v15.4: original quiz dataset covers all 25 topics. Non-road topics remain study checkpoint theory. */
+const RQX_EDU_MODULES=[["definitions","definizioni-generali-doveri-strada","Struttura della strada"],["curve","segnali-pericolo","Curve e pericoli"],["ban","segnali-divieto","Divieti"],["mandatory","segnali-obbligo","Obblighi"],["priority","segnali-precedenza","Precedenza"],["lanes","segnaletica-orizzontale-ostacoli","Strisce e corsie"],["lights","semafori-vigili","Semafori"],["indication","segnali-indicazione","Indicazioni"],["works","segnali-complementari-cantiere","Cantieri"],["panels","pannelli-integrativi","Pannelli integrativi"],["limits","limiti-di-velocita","Limiti di velocità"],["distance","distanza-di-sicurezza","Distanza di sicurezza"],["maneuvers","norme-di-circolazione","Manovre"],["junction","precedenza-incroci","Incroci"],["overtake","sorpasso","Sorpasso"],["parking","fermata-sosta-arresto","Sosta e parcheggio"],["highway","norme-varie-autostrade-pannelli","Autostrade"],["headlights","luci-dispositivi-acustici","Luci"],["belt","cinture-casco-sicurezza","Cinture"],["documents","patente-punti-documenti","Documenti"],["accident","incidenti-stradali-comportamenti","Incidenti"],["fitness","alcool-droga-primo-soccorso","Idoneità"],["insurance","responsabilita-civile-penale-e-assicurazione","Responsabilità"],["ecology","consumi-ambiente-inquinamento","Consumi"],["maintenance","elementi-veicolo-manutenzione-comportamenti","Manutenzione"]];
+for(const [kind,topic,title] of RQX_EDU_MODULES){
+ RQX_SCENE_TOPICS[kind]=[topic,''];
+ SCENARIO_LIBRARY[kind]={
+ icon:'📚',title:'STUDIO · '+title.toUpperCase(),scene:'Checkpoint didattico: '+title,
+ context:'Domanda dal capitolo: '+title+'. Alcuni argomenti teorici non corrispondono a segnali stradali.',
+ guideIT:'La spiegazione è un promemoria sul capitolo '+title+'. Per i casi specifici consulta il manuale aggiornato.',
+ guideBN:'এটি '+title+' অধ্যায়ের প্রশ্ন। নির্দিষ্ট নিয়ম বুঝতে প্রশ্নটি মন দিয়ে পড়ো এবং বর্তমান অফিসিয়াল বই যাচাই করো।',
+ mistakeIT:'Leggi attentamente ogni parola della domanda.',mistakeBN:'প্রশ্নের প্রতিটি শব্দ ভালো করে পড়ো।',
+ questions:SCENARIO_LIBRARY.general.questions
+ };
+}
+
 SCENARIO_LIBRARY.school={
  icon:'🏫',title:'ZONA SCUOLA · BAMBINI',scene:'Sei vicino a una scuola e alle strisce pedonali.',
  context:'Rallenta in prossimità delle scuole; bambini e pedoni possono avere comportamenti imprevedibili.',
@@ -565,6 +581,22 @@ for(let z of horzs)for(let x of verticals)if(!roundabouts.some(r=>Math.hypot(x-r
 for(let b of roundabouts){const cx=b.x,cz=b.z;world.ring(cx,cz,12.8,27,.017,ROAD,96);world.ring(cx,cz,11.9,12.8,.11,'#d6d3c7',80);world.ring(cx,cz,0,11.8,.13,'#63836b',70);world.ring(cx,cz,26.9,27.2,.05,WHITE,96);
 for(let j=0;j<28;j++){let a=2*Math.PI*j/28,bb=a+.075,r=20.2;world.quad([cx+r*Math.cos(a),.07,cz+r*Math.sin(a)],[cx+r*Math.cos(bb),.07,cz+r*Math.sin(bb)],[cx+(r+.12)*Math.cos(bb),.07,cz+(r+.12)*Math.sin(bb)],[cx+(r+.12)*Math.cos(a),.07,cz+(r+.12)*Math.sin(a)],WHITE)}
 for(let j=0;j<18;j++){let a=j*2*Math.PI/18;world.sphere(cx+8.4*Math.cos(a),.6,cz+8.4*Math.sin(a),.65,['#73967f','#a3ae7c','#4f735f'][j%3],7,4)}world.cyl(cx,.95,cz,2.6,1.8,'#d2c9b5',14);world.cyl(cx,2.15,cz,1.48,.7,'#f1ede0',13);world.sphere(cx,3.16,cz,1.2,'#b6c7ce',12,7)}
+
+/* RQX v15.4: four genuinely driveable paved routes connected to the city */
+WORLD.xmin=-1410; WORLD.xmax=1410; WORLD.zmin=-2820; WORLD.zmax=1160;
+world.box(-1090,-.43,-650,660,.52,3200,'#718676');
+world.box(1090,-.43,-650,660,.52,3200,'#648477');
+world.box(0,-.43,-2560,2800,.52,590,'#6f826b');
+world.box(0,-.43,945,2800,.52,510,'#6a846d');
+const RQX_CURVE_ROADS=[],RQX_CURVE_EVENTS=[];
+function RQXcurvePath(points){const out=[];for(let j=0;j<points.length-1;j++){const p0=points[Math.max(0,j-1)],p1=points[j],p2=points[j+1],p3=points[Math.min(points.length-1,j+2)];for(let k=0;k<16;k++){let t=k/16,t2=t*t,t3=t2*t;const val=(a,b,c,d)=>.5*(2*b+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3);out.push({x:val(p0[0],p1[0],p2[0],p3[0]),z:val(p0[1],p1[1],p2[1],p3[1])})}}out.push({x:points[points.length-1][0],z:points[points.length-1][1]});return out}
+function RQXpaintCurve(id,title,control,w,quizKinds){const pts=RQXcurvePath(control),r=w/2;RQX_CURVE_ROADS.push({id,title,pts,width:w});for(let i=0;i<pts.length-1;i++){const a=pts[i],b=pts[i+1],dx=b.x-a.x,dz=b.z-a.z,len=Math.hypot(dx,dz)||1,nx=-dz/len,nz=dx/len;const band=(offset,width,height,col)=>world.quad([a.x+nx*(offset-width/2),height,a.z+nz*(offset-width/2)],[b.x+nx*(offset-width/2),height,b.z+nz*(offset-width/2)],[b.x+nx*(offset+width/2),height,b.z+nz*(offset+width/2)],[a.x+nx*(offset+width/2),height,a.z+nz*(offset+width/2)],col);band(0,w,.04,'#373e46');band(r-.47,.14,.063,'#e9e8d8');band(-r+.47,.14,.063,'#e9e8d8');if(i%4===0)band(0,.16,.073,'#e7c17e')}
+for(let i=1;i<=4;i++){const p=pts[Math.floor((pts.length-1)*i/5)];RQX_CURVE_EVENTS.push({id:id+':'+i,kind:quizKinds[(i-1)%quizKinds.length],x:p.x,z:p.z,label:title})}}
+RQXpaintCurve('east','COSTIERA PANORAMICA',[[660,600],[665,520],[798,430],[940,290],[1035,100],[1115,-105],[1040,-285],[885,-430],[730,-525],[660,-600]],16,['curve','speed','distance','indication']);
+RQXpaintCurve('west','TORNANTI DI MONTAGNA',[[-660,340],[-680,255],[-835,165],[-970,22],[-1120,-145],[-1150,-365],[-1010,-625],[-842,-824],[-738,-1010],[-660,-1200]],14,['curve','maintenance','yield','curve']);
+RQXpaintCurve('south','TANGENZIALE CURVA',[[-660,-2040],[-616,-2174],[-480,-2380],[-250,-2575],[60,-2665],[360,-2540],[555,-2310],[660,-2040]],23,['highway','lanes','distance','overtake']);
+RQXpaintCurve('north','STRADA NEL BOSCO',[[-220,600],[-260,728],[-250,880],[-120,1025],[110,1050],[283,880],[265,733],[220,600]],15,['curve','works','lights','ecology']);
+
 // centerline dashed, stop lines, zebra crossings, traffic islands.
 for(let x of verticals)for(let z=704;z>-2212;z-=13){if(horzs.some(c=>Math.abs(z-c)<20)||roundabouts.some(b=>Math.abs(x-b.x)<5&&Math.abs(z-b.z)<38))continue;world.box(x,.044,z,.12,.026,6,WHITE)}
 for(let z of horzs)for(let x=-722;x<722;x+=13){if(verticals.some(c=>Math.abs(x-c)<19)||roundabouts.some(b=>Math.abs(z-b.z)<5&&Math.abs(x-b.x)<38))continue;world.box(x,.045,z,6,.026,.12,WHITE)}
@@ -891,12 +923,12 @@ function sceneTrigger(){if(NG.mode==='free')return;if(!S.playing||S.paused||S.qu
  }
  for(const rb of roundabouts)offer('roundabout','roundabout:'+rb.name,rb.x,rb.z,25,'ROTATORIA '+rb.name);
  for(const z of SIGNAL_ZS)for(const x of verticals){offer('semaforo','semaforo:'+x+':'+z,x,z,15,'INCROCIO CON SEMAFORO');}
- if(!best)return;scenarioSeen.add(best.key);lastSituationTime=S.t;lastSituationDistance=S.driveDistance;
+ for(const e of RQX_CURVE_EVENTS)offer(e.kind,'curve:'+e.id,e.x,e.z,22,e.label);if(!best)return;scenarioSeen.add(best.key);lastSituationTime=S.t;lastSituationDistance=S.driveDistance;
  quizPick(best.kind,best.key,best.detail);}
 
 function insideRoad(x,z){for(let rb of roundabouts){let rr=Math.hypot(x-rb.x,z-rb.z);if(rr>=12.8&&rr<28.4)return true;if(rr<12.8)return false}
-if(verticals.some(n=>Math.abs(x-n)<8.3))return true;if(horzs.some(n=>Math.abs(z-n)<8.3))return true;return false}
-function zoneLimit(x,z){if(roundabouts.some(r=>Math.hypot(x-r.x,z-r.z)<52))return 30;if(Math.abs(z+420)<65)return 30;if(Math.abs(z+600)<55)return 30;return 50}
+for(const rd of RQX_CURVE_ROADS)for(let j=0;j<rd.pts.length-1;j++){const a=rd.pts[j],b=rd.pts[j+1],vx=b.x-a.x,vz=b.z-a.z,dx=x-a.x,dz=z-a.z,den=vx*vx+vz*vz,u=Math.max(0,Math.min(1,(dx*vx+dz*vz)/(den||1))),ox=dx-vx*u,oz=dz-vz*u;if(ox*ox+oz*oz<(rd.width/2+.25)**2)return true}if(verticals.some(n=>Math.abs(x-n)<8.3))return true;if(horzs.some(n=>Math.abs(z-n)<8.3))return true;return false}
+function zoneLimit(x,z){for(const r of RQX_CURVE_ROADS)for(const p of r.pts){if(Math.hypot(x-p.x,z-p.z)<r.width/2+1)return r.id==='south'?90:r.id==='west'?40:50}if(roundabouts.some(r=>Math.hypot(x-r.x,z-r.z)<52))return 30;if(Math.abs(z+420)<65)return 30;if(Math.abs(z+600)<55)return 30;return 50}
 function phaseGuide(){let s=S;if(s.driveDistance<150&&s.z>-200&&Math.abs(s.x)<17)return 'Tra '+Math.max(0,Math.round(s.z+224))+' m · ROTATORIA ↻ PRIMA USCITA';if(Math.hypot(s.x,s.z-RCZ)<64)return 'ROTATORIA · Rallenta, precedenza a chi circola';if(s.x>43&&s.z<-217&&s.z>-300)return 'USCITA → EST · Prosegui verso la via centrale';if(s.x>80&&s.z<-315&&s.z>-430)return 'ALL’INCROCIO · Svolta a SINISTRA';if(s.x<112&&s.x>-10&&s.z<-400&&s.z>-455)return 'INCROCIO · Attenzione agli attraversamenti';if(s.z< -1950)return 'DISTRETTO SUD · Continua a esplorare la città';if(Math.abs(S.x)>350)return 'VIA PERIFERICA · Controlla incroci e precedenze';if(s.z< -950)return 'BORGO NUOVO · Strade e rotatorie più avanti';return 'Segui i segnali · Rispetta il limite di velocità'}
 let oldZ=S.z,oldX=S.x,offroadAt=0,priorDistance=0;
 function update(dt){if(!S.playing||S.paused)return;S.t+=dt;oldZ=S.z;oldX=S.x;let thrust=keys.gas?20:0,braking=keys.brake?(NG.weather==='rain'?29:NG.weather==='night'?43:50):0;
@@ -994,13 +1026,13 @@ let minimapZoom=.55,mapOpen=false,mapWasPaused=false;
 function drawRoadNetwork(c,w,h,project,full){c.lineCap='round';c.strokeStyle='#74868c';c.lineWidth=full?Math.max(2,16*(w/(WORLD.xmax-WORLD.xmin))):16*minimapZoom;
 for(let x of verticals){let a=project(x,WORLD.zmin+40),b=project(x,WORLD.zmax-40);c.beginPath();c.moveTo(...a);c.lineTo(...b);c.stroke()}
 for(let z of horzs){let a=project(WORLD.xmin+35,z),b=project(WORLD.xmax-35,z);c.beginPath();c.moveTo(...a);c.lineTo(...b);c.stroke()}
-for(let rb of roundabouts){let o=project(rb.x,rb.z);c.strokeStyle='#d0d8c6';c.lineWidth=full?5:5;c.beginPath();c.arc(...o,20*(full?Math.min(w/(WORLD.xmax-WORLD.xmin),h/(WORLD.zmax-WORLD.zmin)):minimapZoom),0,Math.PI*2);c.stroke();c.fillStyle='#7c9e80';c.beginPath();c.arc(...o,10*(full?Math.min(w/(WORLD.xmax-WORLD.xmin),h/(WORLD.zmax-WORLD.zmin)):minimapZoom),0,Math.PI*2);c.fill();c.strokeStyle='#74868c'}
+for(const r of RQX_CURVE_ROADS){c.beginPath();c.strokeStyle='#79bfc6';c.lineWidth=full?Math.max(2,r.width*(w/(WORLD.xmax-WORLD.xmin))):r.width*minimapZoom;r.pts.forEach((p,i)=>{let xy=project(p.x,p.z);i?c.lineTo(...xy):c.moveTo(...xy)});c.stroke()}c.strokeStyle='#74868c';for(let rb of roundabouts){let o=project(rb.x,rb.z);c.strokeStyle='#d0d8c6';c.lineWidth=full?5:5;c.beginPath();c.arc(...o,20*(full?Math.min(w/(WORLD.xmax-WORLD.xmin),h/(WORLD.zmax-WORLD.zmin)):minimapZoom),0,Math.PI*2);c.stroke();c.fillStyle='#7c9e80';c.beginPath();c.arc(...o,10*(full?Math.min(w/(WORLD.xmax-WORLD.xmin),h/(WORLD.zmax-WORLD.zmin)):minimapZoom),0,Math.PI*2);c.fill();c.strokeStyle='#74868c'}
 }
 function drawPlayerMark(c,x,y,scale){c.save();c.translate(x,y);c.rotate(S.yaw);c.fillStyle='#ffe0a2';c.shadowBlur=12;c.shadowColor='#ffda78';c.beginPath();c.moveTo(0,-scale);c.lineTo(-scale*.62,scale*.65);c.lineTo(scale*.62,scale*.65);c.closePath();c.fill();c.restore()}
 
 function RQXdrawDistrictPins(c,project,full){c.save();for(const lv of RQX_LEVELS){const xy=project(lv.start.x,lv.start.z),active=lv.id===RQXLEVEL.current,unlocked=lv.id<=RQXLEVEL.unlocked;
  c.fillStyle=active?'#e8bd75':unlocked?'#7bbdb9':'#63758a';c.strokeStyle='#152e36';c.lineWidth=3;c.beginPath();c.arc(xy[0],xy[1],full?13:5,0,Math.PI*2);c.fill();c.stroke();
- if(full){c.fillStyle='#eef7ef';c.font='bold 14px Arial';c.textAlign='center';c.fillText(lv.id+' · '+lv.name,xy[0],xy[1]-20)}
+ if(full&&(active||lv.id===1||lv.id===10||lv.id===20||lv.id===30)){c.fillStyle='#eef7ef';c.font='bold 12px Arial';c.textAlign='center';c.fillText(lv.id+' · '+lv.name,xy[0],xy[1]-20)}
 }c.restore()}
 
 function drawMiniMap(){let c=ctxMap,w=c.canvas.width,h=c.canvas.height;c.clearRect(0,0,w,h);c.fillStyle='#18303b';c.fillRect(0,0,w,h);let sc=minimapZoom;const project=(x,z)=>[w/2+(x-S.x)*sc,h/2+(z-S.z)*sc];drawRoadNetwork(c,w,h,project,false);RQXdrawRoute(c,project);
@@ -1038,6 +1070,26 @@ const RQX_LEVELS=[
  {id:6,name:'ESAME FINALE',subtitle:'Test completo nella città',bn:'ফাইনাল পরীক্ষা: সব নিয়ম অনুশীলন',accent:'#f2db96',start:{x:660,z:-1480,yaw:0},weather:'night',route:[
    {x:660,z:-1600,title:'Semaforo finale',kind:'semaforo'}, {x:660,z:-1760,title:'Limite 50',kind:'speed'}, {x:660,z:-1930,title:'Precedenza',kind:'yield'}, {x:660,z:-2040,title:'Rotonda e uscita',kind:'roundabout'}, {x:440,z:-2040,title:'Traguardo',kind:'pedestrian'}]}
 ];
+
+/* Thirty sequential missions. Four scenic curved corridors + different city districts. */
+const RQX_LEVEL_EXTRAS=[["COSTIERA EST","east"],["TORNANTI OVEST","west"],["TANGENZIALE SUD","south"],["STRADA NEL BOSCO","north"],["COSTIERA RITORNO","east"],["MONTAGNA RITORNO","west"],["TANGENZIALE RITORNO","south"],["BOSCO RITORNO","north"],["INCROCI CENTRALI","city"],["ZONA MERCATO","city"],["QUARTIERE SCUOLA","city"],["NOTTE IN CITTÀ","city"],["DIVIETI NEL BORGO","city"],["STRADA IN CANTIERE","city"],["PIAZZA E PARCHEGGI","city"],["ECO DRIVING","city"],["AUTOSTRADA NOTTURNA","south"],["PASSO DI MONTAGNA","west"],["PERCORSO COSTIERO","east"],["NUOVA PERIFERIA","city"],["SICUREZZA TOTALE","city"],["LEZIONE RIPASSO","city"],["ESAME DIFFICILE","city"],["MAESTRO DELLA STRADA","south"]];
+for(let i=0;i<RQX_LEVEL_EXTRAS.length;i++){
+ const [name,roadId]=RQX_LEVEL_EXTRAS[i],id=i+7;
+ const kinds=Array.from({length:6},(_,k)=>RQX_EDU_MODULES[(i*6+k)%RQX_EDU_MODULES.length][0]);
+ let start,route;
+ if(roadId!=='city'){
+  const rd=RQX_CURVE_ROADS.find(v=>v.id===roadId),pts=(i===4||i===5||i===6||i===7||i===23)?[...rd.pts].reverse():rd.pts;
+  const p=pts[0],q=pts[2],yaw=Math.atan2(q.x-p.x,-(q.z-p.z));
+  start={x:p.x,z:p.z,yaw};
+  route=kinds.map((kind,k)=>{const t=pts[Math.round((k+1)*(pts.length-1)/7)];return{x:t.x,z:t.z,kind,title:name+' · TAPPA '+(k+1),radius:24}});
+ }else{
+  const vx=verticals[(i*3+2)%verticals.length],startZ=[600,340,80,-120,-420,-600,-760][i%7];
+  start={x:vx,z:startZ,yaw:0};
+  route=kinds.map((kind,k)=>({x:vx,z:Math.max(-2150,startZ-((k+1)*118)),kind,title:name+' · TAPPA '+(k+1),radius:27}));
+ }
+ RQX_LEVELS.push({id,name,subtitle:'Studio e guida · '+roadId.toUpperCase(),bn:'নতুন রাস্তা ও প্রশ্ন শেখো',accent:['#b7d3ca','#e8bf87','#a5bbd7'][i%3],start,weather:i%5===0?'rain':i%6===0?'night':'sun',route});
+}
+
 const RQXLEVEL={selected:1,unlocked:1,current:1,pending:false,scoreAtStart:0,quizAtStart:0,correctAtStart:0,previousScore:0};
 try{RQXLEVEL.unlocked=Math.max(1,Math.min(RQX_LEVELS.length,Number(localStorage.getItem('rqx_v15_level_unlocked'))||1))}catch(_e){}
 function RQXlvl(){return RQX_LEVELS[RQXLEVEL.current-1]}
@@ -1059,7 +1111,7 @@ function RQXlevelAtWaypoint(p){if(NG.mode==='free')return false;RQXLEVEL.pending
  if(!S.quiz)quizPick(p.kind||'general',key,'LIVELLO '+RQXLEVEL.current+' · '+p.title);return true}
 function RQXlevelFinish(){if(!RQXLEVEL.pending)return;RQXLEVEL.pending=false;S.paused=true;S.speed=0;S.complete=false;
  const lvl=RQXlvl(),done=NG.quizTotal,correct=NG.quizGood,pass=NG.routeComplete&&done>=3&&correct>=Math.ceil(done*.5);
- if(pass){RQXLEVEL.unlocked=Math.max(RQXLEVEL.unlocked,Math.min(6,lvl.id+1));try{localStorage.setItem('rqx_v15_level_unlocked',String(RQXLEVEL.unlocked))}catch(_e){}}
+ if(pass){RQXLEVEL.unlocked=Math.max(RQXLEVEL.unlocked,Math.min(RQX_LEVELS.length,lvl.id+1));try{localStorage.setItem('rqx_v15_level_unlocked',String(RQXLEVEL.unlocked))}catch(_e){}}
  $('rqxDoneTitle').textContent=pass?'🏆 LIVELLO SUPERATO':'🔁 RIPASSA IL LIVELLO';$('rqxDoneDistrict').textContent='LIVELLO '+lvl.id+' · '+lvl.name;
  $('rqxDoneScore').textContent=correct+' / '+done+' RISPOSTE';$('rqxDoneText').textContent=pass?'✓ '+lvl.bn+' · Il prossimo distretto è sbloccato.':'Serve almeno il 50% di risposte corrette (minimo 3 quiz). '+lvl.bn;
  $('rqxNextLevel').hidden=!pass||lvl.id>=RQX_LEVELS.length;$('rqxLevelDone').classList.remove('hidden');RQXfillLevelCards();
@@ -1160,7 +1212,7 @@ $('rqxWeatherQuick').onclick=()=>{const w=['sun','rain','fog','night'];NGsetWeat
 // Scenario teaching mode deliberately provides rule-based explanations offline; no live AI implied.
 NGsetWeather('sun');RQXupdateMissionHud();
 
-if(new URLSearchParams(location.search).has("rqxDebug"))Object.assign(window.__RQX_DEBUG,{NG,RQX_LEVELS,RQXLEVEL,RQXapplyLevel,RQXlevelAtWaypoint,RQXlevelFinish,RQXstartArchiveQuestion,RQX_THEORY,RQXchooseQuestion,get route(){return NG_ROUTE},RQXupdateWorld,RQXscore,RQXrecordIncident,RQXopenReplay,NGdrawReplay});
+if(new URLSearchParams(location.search).has("rqxDebug"))Object.assign(window.__RQX_DEBUG,{NG,RQX_LEVELS,RQXLEVEL,RQXapplyLevel,RQXlevelAtWaypoint,RQXlevelFinish,RQXstartArchiveQuestion,RQX_THEORY,RQXchooseQuestion,RQX_CURVE_ROADS,RQX_EDU_MODULES,get route(){return NG_ROUTE},RQXupdateWorld,RQXscore,RQXrecordIncident,RQXopenReplay,NGdrawReplay});
 updateHUD();apexUpdateCockpit();requestAnimationFrame(render);
 })();
 </script>
