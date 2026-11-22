@@ -1,0 +1,1 @@
+{"name":"rqx-patente-b-ai","main":"src/index.js","compatibility_date":"2026-11-20","vars":{"OPENAI_MODEL":"gpt-4.1-mini","ALLOWED_ORIGINS":"https://appassets.androidplatform.net,https://sruhul800-tech.github.io","REQUESTS_PER_MINUTE":"8"}}

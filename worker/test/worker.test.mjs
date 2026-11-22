@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import handler from '../src/index.js';
+const URL='https://rqx.example.workers.dev/api/explain';
+const env={OPENAI_API_KEY:'fake-secret-only-in-test',RQX_ACCESS_CODE:'private-test-code',OPENAI_MODEL:'gpt-4.1-mini'};
+const req=(body,code='private-test-code',origin='https://appassets.androidplatform.net')=>new Request(URL,{method:'POST',headers:{Origin:origin,'Content-Type':'application/json','X-RQX-Access':code},body:JSON.stringify(body)});
+const payload={question:'Il semaforo rosso impone l’arresto?',answer:true,category:'Semaforo',userQuestion:'Perché?'};
+test('CORS preflight allowlisted app origin',async()=>{const x=await handler.fetch(new Request(URL,{method:'OPTIONS',headers:{Origin:'https://appassets.androidplatform.net'}}),env);assert.equal(x.status,204);assert.equal(x.headers.get('Access-Control-Allow-Origin'),'https://appassets.androidplatform.net')});
+test('reject unrelated web origin',async()=>assert.equal((await handler.fetch(req(payload,env.RQX_ACCESS_CODE,'https://attacker.invalid'),env)).status,403));
+test('requires access code',async()=>assert.equal((await handler.fetch(req(payload,'wrong-code'),env)).status,401));
+test('requires server secrets',async()=>assert.equal((await handler.fetch(req(payload),{RQX_ACCESS_CODE:'abc'})).status,503));
+test('reject oversized prompt',async()=>assert.equal((await handler.fetch(req({...payload,userQuestion:'x'.repeat(600)}),env)).status,400));
+test('response parsing with mocked OpenAI and no key leak',async()=>{const orig=globalThis.fetch;let seen;globalThis.fetch=async(url,args)=>{seen={url,authorization:args.headers.Authorization,body:JSON.parse(args.body)};return new Response(JSON.stringify({output:[{content:[{type:'output_text',text:JSON.stringify({it:'Fermati.',bn:'থামতে হবে।',tip:'Osserva il rosso.'})}]}]}),{status:200,headers:{'Content-Type':'application/json'}})};try{const r=await handler.fetch(req(payload),env);assert.equal(r.status,200);const j=await r.json();assert.equal(j.bn,'থামতে হবে।');assert.equal(seen.url,'https://api.openai.com/v1/responses');assert.equal(seen.authorization,'Bearer fake-secret-only-in-test');assert.equal(seen.body.store,false);assert.ok(!r.headers.get('Authorization'))}finally{globalThis.fetch=orig}});
+test('no API key is returned to clients',async()=>{const r=await handler.fetch(new Request('https://rqx.example.workers.dev/health'),env);const s=await r.text();assert.ok(!s.includes('fake-secret-only-in-test'))});
