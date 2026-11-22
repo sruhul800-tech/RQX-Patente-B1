@@ -8,8 +8,8 @@ android {
         applicationId 'com.rqx.patenteb'
         minSdk 26
         targetSdk 35
-        versionCode 18
-        versionName '15.2.1-NavFix'
+        versionCode 20
+        versionName '15.3.0-WORLD-ACADEMY'
     }
 
     buildTypes {
